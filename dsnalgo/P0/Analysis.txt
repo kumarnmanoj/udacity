@@ -1,0 +1,41 @@
+# Task0
+> Runtime complexity = O(1)
+## Reason
+list index access is constant time operation.
+any_list[-x] is the syntatic sugar of any_list[len(any_list) -]
+
+----------------
+
+# Task1
+> Runtime complexity = O(n)
+## Reason
+Solution iterated over the texts and calls and added them to the set of the telephone numbers
+
+----------------
+
+# Task2
+> Runtime complexity = O(n)
+## Reason
+Solution iterated over the calls and identified the telephone number that spent the longest time on the phone
+during the period.
+
+----------------
+
+# Task3
+> Runtime complexity = O(nlogn)
+## Reason
+Solution 
+1. iterated over the calls and identified the calls made from bangalore - took O(n)
+2. sorted the calls made from bangalore - took O(nlogn)
+So overall complexity - O(nlogn)
+
+----------------
+
+# Task4
+> Runtime complexiy = O(n^2)
+## Reason
+Solution
+1. iterated over the calls and texts identified possible telemarketers and their call pattern - took O(n)
+2. iterated over the telemarketers who made call and then looped over the telemarketers who received calls/messages, telemarketers who sent messages - took O(n^2)
+3. sorted the identified telemarketers - took O(nlogn)
+So overall complexity - O(n^2)
