@@ -18,16 +18,12 @@ tm_prefix_made_calls = set()
 tm_prefix_received_calls = set()
 
 for text in texts:
-    if text[0].startswith("140"):
-        tm_prefix_send_message.add(text[0])
-    if text[1].startswith("140"):
-        tm_prefix_receive_message.add(text[1])
+    tm_prefix_send_message.add(text[0])
+    tm_prefix_receive_message.add(text[1])
 
 for call in calls:
-    if call[0].startswith("140"):
-        tm_prefix_made_calls.add(call[0])
-    if call[1].startswith("140"):
-        tm_prefix_received_calls.add(call[1])
+    tm_prefix_made_calls.add(call[0])
+    tm_prefix_received_calls.add(call[1])
 
 def is_telemarketing_caller(caller):
     not_in_creceived = caller not in tm_prefix_received_calls
@@ -40,7 +36,7 @@ possible_tele_marketers = list(filter(is_telemarketing_caller, tm_prefix_made_ca
 
 print("These numbers could be telemarketers: ")
 
-for possible_tele_marketer in possible_tele_marketers:
+for possible_tele_marketer in sorted(possible_tele_marketers):
     print(possible_tele_marketer)
 
 

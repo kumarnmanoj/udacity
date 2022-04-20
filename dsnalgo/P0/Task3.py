@@ -12,27 +12,24 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-bangalore_2_bangalore = 0
-bangalore_called_list = []
+bangalore_called_list = set()
 for call in calls:
   if call[0].startswith("(080)"):
     if call[1][0] == "(":
       dest_fixed_code = call[1][0:call[1].index(")")+1]
-      bangalore_called_list.append(dest_fixed_code)
-      if dest_fixed_code == "(080)":
-        bangalore_2_bangalore += 1
+      bangalore_called_list.add(dest_fixed_code)
     elif call[1].startswith("140"):
-      bangalore_called_list.append("140")
+      bangalore_called_list.add("140")
     else:
-      bangalore_called_list.append(call[1][0:4])
-
-bangalore_called_list.sort()
+      bangalore_called_list.add(call[1][0:4])
 
 print("The numbers called by people in Bangalore have codes:")
-for bangalore_called in bangalore_called_list:
+for bangalore_called in sorted(bangalore_called_list):
   print(" {}".format(bangalore_called))
 
-bangalore_2_bangalore_ratio = float(bangalore_2_bangalore) / len(bangalore_called_list)
+bangalore_2_bangalore = 1 if "(080)" in bangalore_called_list else 0
+
+bangalore_2_bangalore_ratio = (float(bangalore_2_bangalore) / len(bangalore_called_list)) * 100
 print("{0:.2f} percent of calls from fixed lines in Bangalore are calls \nto other fixed lines in Bangalore.".format(bangalore_2_bangalore_ratio))
 
 """
